@@ -2,16 +2,26 @@
   "name": "last-fm-test-task",
   "version": "0.1.0",
   "private": true,
+  "author": "Iurii Zaporozhets<iurii.zaporozhets@gmail.com>",
+  "description": "Simple SPA with data taken from last.fm service",
   "dependencies": {
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "axios": "0.18.0",
+    "connected-react-router": "6.0.0",
+    "history": "4.7.2",
+    "lodash": "4.17.11",
+    "react": "16.6.3",
+    "react-dom": "16.6.3",
+    "react-redux": "6.0.0",
+    "react-router": "4.3.1",
+    "react-router-dom": "4.3.1",
+    "react-scripts": "2.1.1",
+    "react-select": "2.1.2",
+    "redux": "4.0.1",
+    "redux-thunk": "2.3.0",
+    "styled-components": "4.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"
