@@ -21,7 +21,8 @@
     "styled-components": "4.1.2"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app"
