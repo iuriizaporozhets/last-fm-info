@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import styled from 'styled-components';
 import Select from 'react-select';
 
-import {fetchArtistAlbums} from '../store/artists/artists.thunk';
+import {artistsActions} from '../store/artists/artists.actions';
 import AlbumGridItem from './AlbumGridItem';
 
 const SORTING_OPTIONS = [
@@ -31,16 +31,16 @@ class AlbumsGrid extends Component {
 
     getFilteredAlbums() {
         const {sortingOption} = this.state;
-        const { albums } = this.props;
+        const {albums} = this.props;
 
         return albums.slice(0, sortingOption.value);
     }
 
     render() {
         const {className} = this.props;
-        const { sortingOption } = this.state;
+        const {sortingOption} = this.state;
         const requestedAlbums = this.getFilteredAlbums();
-        const albumGridItems = requestedAlbums.map((album, index) => <AlbumGridItem {...album} key={index} />);
+        const albumGridItems = requestedAlbums.map((album, index) => <AlbumGridItem {...album} key={index}/>);
 
         return (
             <div className={className}>
@@ -63,33 +63,37 @@ export const AlbumsGridContainer = connect(
         albums: state.artists.albums.topalbums.album, ...props
     }),
     (dispatch) => ({
-        fetchArtistAlbums: (name) => dispatch(fetchArtistAlbums(name)),
+        fetchArtistAlbums: (name) => dispatch(artistsActions.fetchArtistAlbums(name)),
     })
 )(withRouter(AlbumsGrid));
 
 export default styled(AlbumsGridContainer)`
-  
+   float: left;
+   width: 100%;
+   height: 100%;
+   background: #f1f1f1;
+   font-family: Helvetica;
 `;
 
 const AlbumsListWrapper = styled.div`
     overflow: hidden;
     width: 100%;
     padding: 10px;
+    padding-top: 0;
     box-sizing: border-box;
 `;
 
 const SortingSelect = styled(Select)`
-    top: 5px;
-    width: 25%;
+    top: 6px;
+    width: 200px;
     float: right;
-    font-family: Helvetica;
     cursor: pointer;
-    padding-right: 10px;
+    padding-right: 15px;
 `;
 
 const SectionLabel = styled.div`
-    font-family: Helvetica;
     padding: 10px;
+    padding-left: 15px;
     font-size: 22px;
     font-weight: 100;
     width: 50%;

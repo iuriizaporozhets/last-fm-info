@@ -4,8 +4,8 @@ import {withRouter} from 'react-router-dom';
 import {routerActions} from 'connected-react-router';
 import styled from 'styled-components';
 import {isEmpty} from 'lodash';
+
 import {artistsActions} from '../store/artists/artists.actions';
-import {fetchArtistInfo} from '../store/artists/artists.thunk';
 
 export class ArtistInfo extends Component {
     componentDidMount() {
@@ -16,6 +16,15 @@ export class ArtistInfo extends Component {
 
     componentWillUnmount() {
         this.props.clearInfo();
+    }
+
+    componentWillUpdate(nextProps) {
+        const {match} = nextProps;
+        const {name} = match.params;
+
+        if (nextProps.match !== this.props.match) {
+            this.props.fetchArtistInfo(name);
+        }
     }
 
     render() {
@@ -48,7 +57,7 @@ export const ArtistInfoContainer = connect(
         artist: state.artists.info.artist, ...props
     }),
     (dispatch) => ({
-        fetchArtistInfo: (name) => dispatch(fetchArtistInfo(name)),
+        fetchArtistInfo: (name) => dispatch(artistsActions.fetchArtistInfo(name)),
         clearInfo: () => dispatch(artistsActions.setArtistInfo({})),
         onAlbumsRequest: (name) => dispatch(routerActions.push(`/artists/${name}/albums`))
     })
@@ -60,7 +69,6 @@ const AlbumsLoadButton = styled.div`
     line-height: 40px;
     border: 2px solid #e7e7e7;
     float: left;
-    font-family: Helvetica;
     font-weight: 100;
     text-align: center;
     cursor: pointer;
@@ -75,12 +83,10 @@ const AlbumsLoadButton = styled.div`
 const ArtistBio = styled.div`
     float: left;
     margin-top: 10px;
-    font-family: Helvetica;
     font-weight: 100;
 `;
 
 const ArtistName = styled.div`
-    font-family: Helvetica;
     font-weight: 200;
     font-size: 32px;
     width: calc(100% - 210px);
@@ -103,9 +109,10 @@ const RoundedImageWrapper = styled.div`
 `;
 
 export default styled(ArtistInfoContainer)`
+    font-family: Helvetica;
     overflow: hidden;
     padding: 10px;
-    margin: 0 10px;
     background: #f1f1f1;
-    border-radius: 4px;
+    float: left;
+    height: 100%;
 `

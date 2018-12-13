@@ -1,4 +1,4 @@
-import { Actions } from './artists.actions';
+import {Actions} from './artists.actions';
 
 const initialState = {
     list: [],
@@ -6,7 +6,7 @@ const initialState = {
         artist: {}
     },
     albums: {
-        topalbums:{
+        topalbums: {
             album: []
         }
     }

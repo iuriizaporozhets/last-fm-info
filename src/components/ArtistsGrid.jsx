@@ -21,14 +21,12 @@ const ArtistsGrid = (props) => {
 };
 
 const ArtistsGridContainer = connect(
-    (state, props) =>
-        ({
-            artists: state.artists.list, ...props
-        }),
-    (dispatch) =>
-        ({
-            onArtistSelect: (name) => dispatch(routerActions.push(`/artists/${name}`))
-        })
+    (state, props) => ({
+        artists: state.artists.list, ...props
+    }),
+    (dispatch) => ({
+        onArtistSelect: (name) => dispatch(routerActions.push(`/artists/${name}`))
+    })
 )(withRouter(ArtistsGrid));
 
 export default styled(ArtistsGridContainer)`

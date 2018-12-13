@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {fetchArtistsList} from '../store/artists/artists.thunk';
-
+import {artistsActions} from '../store/artists/artists.actions';
 import Header from './Header';
 import ArtistsGrid from './ArtistsGrid';
 import ArtistInfo from './ArtistInfo';
@@ -33,9 +32,9 @@ class App extends Component {
             <div className="App">
                 <Header {...artists} {...callbacks} />
                 <Switch>
-                    <Route path="/artists" component={ArtistsGrid} exact />
-                    <Route path="/artists/:name" component={ArtistInfo} exact />
-                    <Route path="/artists/:name/albums" component={AlbumsGrid} exact />
+                    <Route path="/artists" component={ArtistsGrid} exact/>
+                    <Route path="/artists/:name" component={ArtistInfo} exact/>
+                    <Route path="/artists/:name/albums" component={AlbumsGrid} exact/>
                     <Redirect to="/artists"/>
                 </Switch>
             </div>
@@ -50,6 +49,6 @@ export default connect(
         albumsList: state.artists.albums,
     }),
     (dispatch) => ({
-        fetchArtistsList: dispatch(fetchArtistsList)
+        fetchArtistsList: dispatch(artistsActions.fetchArtistsList)
     })
 )(App);

@@ -7,9 +7,12 @@ import {routerActions} from 'connected-react-router';
 const SEARCH_PLACEHOLDER = 'Search';
 
 class Search extends Component {
-    state = {
-        query: '',
-    };
+    constructor() {
+        super();
+        this.state = {
+            query: ''
+        };
+    }
 
     handleInputChange() {
         this.setState({
@@ -32,7 +35,8 @@ class Search extends Component {
         });
         const filteredArtistItems = filteredArtists.map((artist, index) => {
             const {name} = artist;
-            return <ExpectedArtistItem onClick={() => this.onItemSelect(name)} key={ index }>{ name }</ExpectedArtistItem>;
+            return <ExpectedArtistItem onClick={() => this.onItemSelect(name)}
+                                       key={ index }>{ name }</ExpectedArtistItem>;
         });
 
         return (
@@ -67,6 +71,7 @@ const ExpectedArtists = styled.ul`
     position: relative;
     z-index: 999;
     width: 50%;
+    max-width: 250px;
     border-radius: 4px;
 `;
 
@@ -76,7 +81,6 @@ const ExpectedArtistItem = styled.li`
     height: 20px;
     cursor: pointer;
     padding: 5px;
-    font-family: Helvetica;
     font-weight: 200;
     
     &:hover {
@@ -90,7 +94,8 @@ const StyledInput = styled.input`
     box-sizing: border-box;
     border: none;
     font-size: 20px;
-    padding: 0 10px;
+    padding: 10px;
+    padding-left: 15px;
     outline: none;
     font-weight: 200;
 `;
@@ -98,4 +103,5 @@ const StyledInput = styled.input`
 export default styled(SearchContainer)`
     width: 100%;
     height: 100%;
+    font-family: Helvetica;
 `;

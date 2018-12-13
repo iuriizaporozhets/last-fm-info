@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AlbumGridItem = (props) => {
-    const { className, name: albumName, image } = props;
+    const {className, name: albumName, image} = props;
     const imageUrl = image.find((obj) => obj.size === 'medium')['#text'];
 
     return (
         <div className={className}>
             <RoundedImageWrapper>
-                <Image src={imageUrl} />
+                <Image src={imageUrl}/>
             </RoundedImageWrapper>
             <AlbumGridName>{albumName}</AlbumGridName>
         </div>
@@ -44,7 +44,7 @@ export default styled(AlbumGridItem)`
     margin: 5px;
     padding: 10px;
     height: 50px;
-    background: #e9e9e9;
+    background: #d5d5d5;
     float: left;
     border-radius: 4px;
 `;
