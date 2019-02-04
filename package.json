@@ -1,36 +1,35 @@
 {
-  "name": "last-fm-test-task",
-  "version": "0.1.0",
-  "private": true,
-  "author": "Iurii Zaporozhets<iurii.zaporozhets@gmail.com>",
-  "description": "Simple SPA with data taken from last.fm service",
-  "dependencies": {
-    "axios": "0.18.0",
-    "connected-react-router": "6.0.0",
-    "history": "4.7.2",
-    "lodash": "4.17.11",
-    "react": "16.6.3",
-    "react-dom": "16.6.3",
-    "react-redux": "6.0.0",
-    "react-router": "4.3.1",
-    "react-router-dom": "4.3.1",
-    "react-scripts": "2.1.1",
-    "react-select": "2.1.2",
-    "redux": "4.0.1",
-    "redux-thunk": "2.3.0",
-    "styled-components": "4.1.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "name": "last-fm-test-task",
+    "version": "0.1.0",
+    "private": true,
+    "author": "Iurii Zaporozhets<iurii.zaporozhets@gmail.com>",
+    "description": "Simple SPA with data taken from last.fm service",
+    "scripts": {
+        "build": "webpack",
+        "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+    },
+    "dependencies": {
+        "axios": "0.18.0",
+        "connected-react-router": "6.0.0",
+        "history": "4.7.2",
+        "lodash": "4.17.11",
+        "react": "16.6.3",
+        "react-dom": "16.6.3",
+        "react-redux": "6.0.0",
+        "react-router": "4.3.1",
+        "react-router-dom": "4.3.1",
+        "react-select": "2.1.2",
+        "redux": "4.0.1",
+        "redux-thunk": "2.3.0",
+        "styled-components": "4.1.2"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.2.2",
+        "@babel/preset-env": "^7.3.1",
+        "@babel/preset-react": "^7.0.0",
+        "babel-loader": "^8.0.5",
+        "webpack": "4.29.0",
+        "webpack-cli": "3.2.1",
+        "webpack-dev-server": "3.1.14"
+    }
 }

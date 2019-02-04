@@ -1,14 +1,14 @@
-import React, {Component} from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import {artistsActions} from '../store/artists/artists.actions';
+import { artistsActions } from '../store/artists/artists.actions';
 import Header from './Header';
 import ArtistsGrid from './ArtistsGrid';
 import ArtistInfo from './ArtistInfo';
 import AlbumsGrid from './AlbumsGrid';
 
-class App extends Component {
+class AppRoot extends Component {
     componentDidMount() {
         this.props.fetchArtistsList();
     }
@@ -29,7 +29,7 @@ class App extends Component {
         };
 
         return (
-            <div className="App">
+            <div className="AppRoot">
                 <Header {...artists} {...callbacks} />
                 <Switch>
                     <Route path="/artists" component={ArtistsGrid} exact/>
@@ -42,13 +42,18 @@ class App extends Component {
     }
 }
 
-export default connect(
-    (state) => ({
+const mapStateToProps = (state) => {
+    return {
         artistsList: state.artists.list,
         artistInfo: state.artists.info,
         albumsList: state.artists.albums,
-    }),
-    (dispatch) => ({
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
         fetchArtistsList: dispatch(artistsActions.fetchArtistsList)
-    })
-)(App);
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppRoot);

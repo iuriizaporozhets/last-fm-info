@@ -1,7 +1,7 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {routerActions} from 'connected-react-router';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { routerActions } from 'connected-react-router';
 import styled from 'styled-components';
 
 import ArtistGridItem from './ArtistGridItem';
@@ -20,14 +20,19 @@ const ArtistsGrid = (props) => {
     );
 };
 
-const ArtistsGridContainer = connect(
-    (state, props) => ({
-        artists: state.artists.list, ...props
-    }),
-    (dispatch) => ({
-        onArtistSelect: (name) => dispatch(routerActions.push(`/artists/${name}`))
-    })
-)(withRouter(ArtistsGrid));
+const mapStateToProps = (state, props) => {
+    return {
+        artists: state.artists.list, ...props,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onArtistSelect: (name) => dispatch(routerActions.push(`/artists/${name}`)),
+    };
+};
+
+const ArtistsGridContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(ArtistsGrid));
 
 export default styled(ArtistsGridContainer)`
     width: 100%;

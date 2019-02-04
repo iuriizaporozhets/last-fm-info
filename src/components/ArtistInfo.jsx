@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
-import {routerActions} from 'connected-react-router';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { routerActions } from 'connected-react-router';
 import styled from 'styled-components';
-import {isEmpty} from 'lodash';
+import { isEmpty } from 'lodash';
 
-import {artistsActions} from '../store/artists/artists.actions';
+import { artistsActions } from '../store/artists/artists.actions';
 
 export class ArtistInfo extends Component {
     componentDidMount() {
@@ -52,16 +52,21 @@ export class ArtistInfo extends Component {
 }
 // dangerouslySetInnerHTML is used here to render the link element which points to last.fm service
 
-export const ArtistInfoContainer = connect(
-    (state, props) => ({
-        artist: state.artists.info.artist, ...props
-    }),
-    (dispatch) => ({
+const mapStateToProps = (state, props) => {
+    return {
+        artist: state.artists.info.artist, ...props,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
         fetchArtistInfo: (name) => dispatch(artistsActions.fetchArtistInfo(name)),
         clearInfo: () => dispatch(artistsActions.setArtistInfo({})),
-        onAlbumsRequest: (name) => dispatch(routerActions.push(`/artists/${name}/albums`))
-    })
-)(withRouter(ArtistInfo));
+        onAlbumsRequest: (name) => dispatch(routerActions.push(`/artists/${name}/albums`)),
+    };
+};
+
+export const ArtistInfoContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(ArtistInfo));
 
 const AlbumsLoadButton = styled.div`
     width: 100px;

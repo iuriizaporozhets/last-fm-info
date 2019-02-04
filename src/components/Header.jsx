@@ -21,13 +21,17 @@ const Header = (props) => {
     );
 };
 
-const HeaderContainer = connect(
-    (state, ...props) => ({...props}),
-    (dispatch) => ({
-        onBack: () => dispatch(routerActions.goBack()),
+const mapStateToProps = (state, props) => {
+    return {...props};
+};
 
-    })
-)(withRouter(Header));
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onBack: () => dispatch(routerActions.goBack()),
+    };
+};
+
+const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(Header));
 
 const BackButton = styled.div`
     width: 100px;

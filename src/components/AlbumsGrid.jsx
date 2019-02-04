@@ -58,14 +58,19 @@ class AlbumsGrid extends Component {
     }
 }
 
-export const AlbumsGridContainer = connect(
-    (state, props) => ({
+const mapStateToProps = (state, props) => {
+    return {
         albums: state.artists.albums.topalbums.album, ...props
-    }),
-    (dispatch) => ({
-        fetchArtistAlbums: (name) => dispatch(artistsActions.fetchArtistAlbums(name)),
-    })
-)(withRouter(AlbumsGrid));
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchArtistAlbums: (name) => dispatch(artistsActions.fetchArtistAlbums(name))
+    };
+};
+
+export const AlbumsGridContainer = connect(mapStateToProps, mapDispatchToProps)(withRouter(AlbumsGrid));
 
 export default styled(AlbumsGridContainer)`
    float: left;
